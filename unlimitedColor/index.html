@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlimited Colors</title>
+</head>
+<style>
+    .wrapper{
+        display: flex;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+
+    }
+    .start{
+        width: 80px;
+        height: 30px;
+    }
+    .stop{
+        margin-left: 8px;
+        width: 80px;
+        height: 30px;
+    }
+</style>
+<body>
+    <div class="wrapper">
+        <button class="start">Start</button>
+        <button class="stop">Stop</button>
+    </div>
+    <script>
+        let colors;
+        //code to generate random colors
+        const randomcolor = function(){
+            const hex = '0123456789ABCDEF'
+            let color = '#'
+            for (let i = 0; i < 6; i++) {
+                color += hex[Math.floor(Math.random()*16)];
+                
+            }
+            return color ;
+        }
+
+        let intervalId ;
+
+        const start = document.querySelector('.start')
+        console.log(start);
+        const stop = document.querySelector('.stop')
+        console.log(stop);
+
+        const startChangingColor = function(){
+            if(!intervalId){
+                intervalId = setInterval(changeBgColor, 1000);
+            }
+            function changeBgColor(){
+            document.body.style.backgroundColor = randomcolor();
+        }  ; 
+        }
+
+       const stopChangingColor = function(){
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+
+        start.addEventListener('click',startChangingColor);
+        stop.addEventListener('click',stopChangingColor);
+    </script>
+    <!-- Problem -->
+    <!-- How to declare setInterval so that it coud be accessed inside stop function  -->
+    <!-- How to implement chnaging colors -->
+</body>
+</html>
